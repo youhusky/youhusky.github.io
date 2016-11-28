@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+	.state{
+		fill: none;
+		stroke: #a9a9a9;
+		stroke-width: 1;
+	}
+	.state:hover{
+		fill-opacity:0.5;
+	}
+	#tooltip {   
+		position: absolute;           
+		text-align: center;
+		padding: 20px;             
+		margin: 10px;
+		font: 12px sans-serif;        
+		background: lightsteelblue;   
+		border: 1px;      
+		border-radius: 2px;           
+		pointer-events: none;         
+	}
+	#tooltip h4{
+		margin:0;
+		font-size:14px;
+	}
+	#tooltip{
+		background:rgba(0,0,0,0.9);
+		border:1px solid grey;
+		border-radius:5px;
+		font-size:12px;
+		width:auto;
+		padding:4px;
+		color:white;
+		opacity:0;
+	}
+	#tooltip table{
+		table-layout:fixed;
+	}
+	#tooltip tr td{
+		padding:0;
+		margin:0;
+	}
+	#tooltip tr td:nth-child(1){
+		width:50px;
+	}
+	#tooltip tr td:nth-child(2){
+		text-align:center;
+	}
+
+	.cd-header {
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 50px;
+	  background: rgba(255, 255, 255, 0.95);
+	  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	  z-index: 2;
+	}
+	.cd-header:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+
+	@media only screen and (min-width: 768px) {
+	  .cd-header {
+	    height: 70px;
+	    background-color: #FCFAFB;
+	  }
+	}
+
+	.cd-main-nav {
+	  float: right;
+	  margin-right: 5%;
+	  width: 44px;
+	  height: 100%;
+	  background-size: 44px 44px;
+	  cursor: pointer;
+	}
+	.cd-main-nav ul {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  -webkit-transform: translateY(-100%);
+	  -moz-transform: translateY(-100%);
+	  -ms-transform: translateY(-100%);
+	  -o-transform: translateY(-100%);
+	  transform: translateY(-100%);
+	}
+	.cd-main-nav ul.is-visible {
+	  -webkit-transform: translateY(50px);
+	  -moz-transform: translateY(50px);
+	  -ms-transform: translateY(50px);
+	  -o-transform: translateY(50px);
+	  transform: translateY(50px);
+	}
+	.cd-main-nav a {
+	  display: block;
+	  height: 50px;
+	  line-height: 50px;
+	  padding-left: 5%;
+	  background: #2f292a;
+	  border-top: 1px solid #453c3d;
+	  color: #8e7d7f;
+	}
+	@media only screen and (min-width: 768px) {
+	  .cd-main-nav {
+	    width: auto;
+	    height: auto;
+	    background: none;
+	    cursor: auto;
+	  }
+	  .cd-main-nav ul {
+	    position: static;
+	    width: auto;
+	    -webkit-transform: translateY(0);
+	    -moz-transform: translateY(0);
+	    -ms-transform: translateY(0);
+	    -o-transform: translateY(0);
+	    transform: translateY(0);
+	    line-height: 70px;
+	  }
+	  .cd-main-nav ul.is-visible {
+	    -webkit-transform: translateY(0);
+	    -moz-transform: translateY(0);
+	    -ms-transform: translateY(0);
+	    -o-transform: translateY(0);
+	    transform: translateY(0);
+	  }
+	  .cd-main-nav li {
+	    display: inline-block;
+	    margin-left: 1em;
+	    font-family:  Helvetica;
+	  }
+	  .cd-main-nav a {
+	    display: inline-block;
+	    height: auto;
+	    line-height: normal;
+	    background: transparent;
+	    padding: .6em 1em;
+	    border-top: none;
+	    color: #3d3536;
+	    text-transform: uppercase;
+	    font-family:  Helvetica;
+	    font-weight: normal;
+	    font-size: 16px;
+	    font-size: 0.875rem;
+	  }
+	  .cd-main-nav a:hover {
+	    color: #5288DB;
+	  }
+	  
+	  .no-touch .cd-main-nav a:hover {
+	    color: #99a478;
+	  }
+
+	  .overview {
+		background-image: url("oil133.jpg");
+	  }
+	}
+</style>
+  <head>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+  </head>
+<body>
+
+<header class="cd-header">
+		<nav class="cd-main-nav">
+			<ul>
+				<!-- inser more links here -->
+				<li><a href="index.html">Homepage</a></li>
+				<li><a href="gas.html">Gasoline Sales</a></li>
+                <li><a href="naturalgas.html">Natural Gas Consumption</a></li>
+				<li><a href="about.html">About Us</a></li>
+			</ul>
+		</nav> <!-- cd-main-nav -->
+</header>
+
+<main class="main">
+	<!-- overview divistion -->
+	<div class="overview"><center>
+		<h2 style="font-family: Century Gothic, Helvetica;color:black;font-size:32px;font-weight: lighter;margin-top:50px"> <br>Overview for Total Gasoline All Sales
+		<p style="font-size:20px;opacity:0.7;margin-top: 20px;margin-bottom: 20px;margin-left: 350px;margin-right: 350px;font-family: sans-serif; font-size: 16px;font-weight:normal;">U.S. oil production has transformed fundamentally in the past decade. After two decades of
+steady decline, domestic crude oil production grew by nearly 75 percent between 2008 and 2014,
+and each month since October 2013 production has exceeded net imports, which hadn’t
+happened since the mid‐1990s. While developmentsin oil production have been widely reported
+and appreciated, far less attention has been paid to the remarkable and surprising decline in U.S.
+petroleum consumption relative to both recent levels and past projections. This report identifies
+the mechanisms behind the surprising decline. Quantifying the underlying causes improves
+understanding of why the consumption path has changed, and how it might evolve in the future.</p><br>
+		</h2>
+		</center>
+	</div>
+	<hr>
+
+<!--checkboxes-->
+<!--
+   <div id="yearSpan"></div>
+   <script src="http://d3js.org/d3.v3.min.js"></script>
+   <script>
+	d3.csv("total_gasoline.csv",function(data) {
+		var yearSelected;
+		d3.select("#yearSpan").selectAll('p')
+				.data(data)
+				.enter()
+				.append('a')
+				.attr('href','#')
+				.attr('style',"text-decoration:none")
+				.append('p')
+				.text(function(d) {
+					return d.year;
+					})
+				.attr("id","def")
+				.style("background-color",function(d) {
+					if (d.year=="2002"){
+						return "#4099FF";
+						}
+						
+					})
+				.on("click", function(d) {
+					if (typeof yearSelected === "undefined") {
+						yearSpanSelected= d3.select('#def');
+						console.log(yearSpanSelected);
+						yearSpanSelected.style("background-color","rgb(77,77,77)");
+						yearSelected = d.year;
+						yearSpanSelected = d3.select(this);
+						yearSpanSelected.style("background-color","#4099FF");
+						
+						
+					} else if (yearSelected !== d.year) {
+						yearSpanSelected.style("background-color","rgb(77,77,77)");
+						yearSpanSelected = d3.select(this);
+						yearSelected = d.year;
+						yearSpanSelected.style("background-color","#4099FF");	
+					}
+						
+						d3.select("#map_title #title_year")
+							.transition()
+							.duration(1000)
+							.text(function(d) {
+							return yearSelected;
+						});
+						
+						clickyear(yearSelected,cate);
+					
+					});
+				}
+		);
+		</script>
+-->
+<!-- checkbox ends-->
+
+
+<!-- map section -->
+	<div id="map">
+		<h2 style="font-family: Century Gothic, Arial;font-size:32px;font-weight: lighter"><center>Natural Gas Consumption by End Use</center></h2>
+		<div id="tooltip"></div><!-- div to hold tooltip. -->
+		<svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
+	</div>
+	<hr>
+
+	<p><center>data</center></p>
+
+</main>
+<script src="uStates.js"></script> <!-- creates uStates. -->
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+var dataset;
+	function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
+		//var type = d3.select("#map_title #title_cate").html();
+		//var year = d3.select("#map_title #title_year").html();
+		//console.log("type",type);
+		//console.log("year",year);
+		//var dvalue = (d.value/1000000).toFixed(2);
+		return "<h4>"+n+"</h4><h4>in "+year+"</h4></h4><h4>"+d.value+" Thousand Gallons per Day</h4>";
+  
+	}
+
+	var year = 1983;
+
+	d3.csv("total_gasoline.csv",function(data){
+		console.log(data);
+		console.log(year);
+		console.log(data.length);
+		for (var i = 0; i < data.length; i++)
+		{
+  			if (data[i].year == year )  dataset = data[i]
+		}   
+
+		console.log(dataset);
+	
+        var max_state = 0;
+        var min_state = Infinity;
+        var sampleData ={}; /* Sample random data. */ 
+	        ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
+	        "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH", 
+	        "MI", "WY", "MT", "ID", "WA", "DC", "TX", "CA", "AZ", "NV", "UT", 
+	        "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN", 
+	        "WI", "MO", "AR", "OK", "KS", "LS", "VA"]
+	        .forEach(function(d,i){
+	        max_state = d3.max([max_state,+dataset[d]])
+	        min_state = d3.min([min_state,+dataset[d]])
+        });
+
+	  	  //console.log(min_state,max_state);
+	  	  /*
+			// side range bar
+		  d3.select("#range_high")
+		  	.text(function(d) {
+				return max_state+" Million Cubic Feet";
+				});
+		  d3.select("#range_low")
+		  	.text(function(d) {
+				return min_state+" Million Cubic Feet";
+				});
+		  */
+        var Scale = d3.scale.linear()
+        	.domain([min_state,max_state])
+        	.range([0,1]);
+			["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
+			"ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH", 
+			"MI", "WY", "MT", "ID", "WA", "DC", "TX", "CA", "AZ", "NV", "UT", 
+			"CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN", 
+			"WI", "MO", "AR", "OK", "KS", "LS", "VA"]
+			.forEach(function(d,i){ 
+          		sampleData[d]={value:dataset[d], color:d3.interpolate("#4571DA", "#9D2E2C")(Scale(dataset[d]))};
+              //console.log(Scale(dataset[d]));
+            });
+	        // console.log(min_state,max_state);
+	        //console.log(sampleData);
+        
+        /* draw states on id #statesvg */ 
+        uStates.draw("#statesvg", sampleData, tooltipHtml);
+        
+      });
+
+  
+  /*
+  d3.select("#details").classed("hidden",true);
+					d3.select("#charts").classed("hidden",true);
+					d3.select("#details_state_name").classed("hidden",true);
+					d3.select('.site-footer').classed("hidden",false);
+  */
+  d3.select(self.frameElement).style("height", "600px"); 
+  
+</script>
+
+</body>
