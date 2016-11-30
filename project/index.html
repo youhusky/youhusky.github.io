@@ -1,196 +1,142 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-	.state{
-		fill: none;
-		stroke: #a9a9a9;
-		stroke-width: 1;
-	}
-	.state:hover{
-		fill-opacity:0.5;
-	}
-	#tooltip {   
-		position: absolute;           
-		text-align: center;
-		padding: 20px;             
-		margin: 10px;
-		font: 12px sans-serif;        
-		background: lightsteelblue;   
-		border: 1px;      
-		border-radius: 2px;           
-		pointer-events: none;         
-	}
-	#tooltip h4{
-		margin:0;
-		font-size:14px;
-	}
-	#tooltip{
-		background:rgba(0,0,0,0.9);
-		border:1px solid grey;
-		border-radius:5px;
-		font-size:12px;
-		width:auto;
-		padding:4px;
-		color:white;
-		opacity:0;
-	}
-	#tooltip table{
-		table-layout:fixed;
-	}
-	#tooltip tr td{
-		padding:0;
-		margin:0;
-	}
-	#tooltip tr td:nth-child(1){
-		width:50px;
-	}
-	#tooltip tr td:nth-child(2){
-		text-align:center;
-	}
+<!--[if lte IE 9]><html class="no-js is-ie"><![endif]-->
+<!--[if gt IE 8]><!--><html class=no-js><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="BlackTie Free Bootstrap Theme">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> '
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet" media="screen">
+        <link href="assets/css/simple-line-icons.css" rel="stylesheet" media="screen">
+        <link href="assets/css/animate.css" rel="stylesheet">
+	
 
-	.cd-header {
-	  position: fixed;
-	  top: 0;
-	  left: 0;
-	  width: 100%;
-	  height: 50px;
-	  background: rgba(255, 255, 255, 0.95);
-	  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-	  z-index: 2;
-	}
-	.cd-header:after {
-	  content: "";
-	  display: table;
-	  clear: both;
-	}
+	<title>INF554 Group Project</title>
+	<link rel=stylesheet href="css/main.css">
+	<!--[if lte IE 8]>
+	<link rel=stylesheet href="css/ie.css">
+	<![endif]-->
+		<script src="js/vendor/modernizr.js"></script>
 
-	@media only screen and (min-width: 768px) {
-	  .cd-header {
-	    height: 70px;
-	    background-color: #FCFAFB;
-	  }
-	}
+		<script src="js/vendor/respond.min.js"></script>
 
-	.cd-main-nav {
-	  float: right;
-	  margin-right: 5%;
-	  width: 44px;
-	  height: 100%;
-	  background-size: 44px 44px;
-	  cursor: pointer;
-	}
-	.cd-main-nav ul {
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  width: 100%;
-	  -webkit-transform: translateY(-100%);
-	  -moz-transform: translateY(-100%);
-	  -ms-transform: translateY(-100%);
-	  -o-transform: translateY(-100%);
-	  transform: translateY(-100%);
-	}
-	.cd-main-nav ul.is-visible {
-	  -webkit-transform: translateY(50px);
-	  -moz-transform: translateY(50px);
-	  -ms-transform: translateY(50px);
-	  -o-transform: translateY(50px);
-	  transform: translateY(50px);
-	}
-	.cd-main-nav a {
-	  display: block;
-	  height: 50px;
-	  line-height: 50px;
-	  padding-left: 5%;
-	  background: #2f292a;
-	  border-top: 1px solid #453c3d;
-	  color: #8e7d7f;
-	}
-	@media only screen and (min-width: 768px) {
-	  .cd-main-nav {
-	    width: auto;
-	    height: auto;
-	    background: none;
-	    cursor: auto;
-	  }
-	  .cd-main-nav ul {
-	    position: static;
-	    width: auto;
-	    -webkit-transform: translateY(0);
-	    -moz-transform: translateY(0);
-	    -ms-transform: translateY(0);
-	    -o-transform: translateY(0);
-	    transform: translateY(0);
-	    line-height: 70px;
-	  }
-	  .cd-main-nav ul.is-visible {
-	    -webkit-transform: translateY(0);
-	    -moz-transform: translateY(0);
-	    -ms-transform: translateY(0);
-	    -o-transform: translateY(0);
-	    transform: translateY(0);
-	  }
-	  .cd-main-nav li {
-	    display: inline-block;
-	    margin-left: 1em;
-	    font-family:  Helvetica;
-	  }
-	  .cd-main-nav a {
-	    display: inline-block;
-	    height: auto;
-	    line-height: normal;
-	    background: transparent;
-	    padding: .6em 1em;
-	    border-top: none;
-	    color: #3d3536;
-	    text-transform: uppercase;
-	    font-family:  Helvetica;
-	    font-weight: normal;
-	    font-size: 16px;
-	    font-size: 0.875rem;
-	  }
-	  .cd-main-nav a:hover {
-	    color: #5288DB;
-	  }
-	  
-	  .no-touch .cd-main-nav a:hover {
-	    color: #99a478;
-	  }
-	}
-</style>
-  <head>
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
-  </head>
+</head>
+
 <body>
+	<div class="level level-hero hero-home has-hint">
+		
 
-<header class="cd-header">
-		<nav class="cd-main-nav">
-			<ul>
-				<!-- inser more links here -->
-				<li><a href="index.html">Homepage</a></li>
-				<li><a href="gas.html">Gasoline Sales</a></li>
-                <li><a href="naturalgas.html">Natural Gas Consumption</a></li>
-				<li><a href="Renewable.html">Renewable Energy</a></li>
-				<li><a href="about.html">About Us</a></li>
-			</ul>
-		</nav> <!-- cd-main-nav -->
-</header>
+		<div class="hero-overlay visible-lg"></div>
 
-<main class="main">
-	<!-- overview division -->
-	<div class="overview"><center>
-		<h2 style="background-color: #D0E8F4; font-family: Century Gothic, Helvetica;font-size:32px;font-weight: lighter;margin-top:50px"> <br>index
-		<p style="font-size:20px;color:black;opacity:0.7;margin-top: 20px;margin-bottom: 20px;font-family: sans-serif; font-size: 16px">havn't finish: <br>
-		--make other tab for line graph; <br>
-		--checkbox for change year; <br>
-		--input data into page;<br>
-		--homepage contents;<br>
-		</p><br>
-		</h2>
-		</center>
+		<video loop id=bg-video class=fullscreen-video>
+			
+			<source src="img_2350.mp4" type="video/mp4">
+
+		</video>
+
+		<div class="container full-height">
+			<div class=v-align-parent>
+				<div class=v-center>
+					<div class="row">
+						<div class="col-xs-10 col-sm-6">
+							<h1 class="mb-10 xs-mb-10 heading heading-bordered color-dark ">Energy in <span>U.S.</span></h1>
+							<div class="subheading mb-20">Find the reason <br class=hidden-xs>different type of energy </div>
+						</div>
+					</div>
+					<div>
+						<a class="btn btn-prepend btn-launch-video" href="#">
+							<i class="prepended icon-append-play"></i>Watch Video on Youtube
+						</a>
+						<a class="btn btn-prepend" href="#">
+							<i class="prepended icon-append-iphone"></i>Learn More on Sozi
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class=hint-arrow></div>
+		</div>
 	</div>
-	<hr>
+	<div class="header">
+	<div class="container rel text-left">
+		<a class="brand brand-color" href="index.html">Bird's-eye view Timeline</a>
+				<nav class=nav>
+			<ul>
+				<li><a href="index.html">Home</a>
+				<li class="active"><a href="gas.html">GASOLINE SALES </a>
+				<li><a href = "naturalgas.html">Natural Gas Consumption</li>
+				<li><a href = "about.html">About us</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+<iframe src='https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=15KTxnd3hi66w9YShWyCrCDY7hdCwiMMZ1Q_HLQMeQOs&font=Default&lang=en&initial_zoom=2&height=650' width='100%' height='650' frameborder='0'></iframe>
 
 
+<section id="contact" class="pfblock">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="pfblock-header">
+                        <h2 class="pfblock-title">Drop me a line</h2>
+                        <div class="pfblock-line"></div>
+                        <div class="pfblock-subtitle">
+                            <p>If you are interested in us, please email me to
+                                <a class="wow fadeInUp">bozhaoli@usc.edu</a>
+                                <a class="wow fadeInUp">sieera@usc.edu</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- .container -->
+    </section>
+    <!-- Contact end -->
+    <!-- Footer start -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="social-links">
+                        <li><a href="https://github.com/youhusky" class="wow fadeInUp"><i class="fa fa-github"></i></a>
+                    </li>
+                    <li><a href="https://cn.linkedin.com/in/bozhaoli" class="wow fadeInUp"><i
+                    class="fa fa-linkedin"></i></a></li>
+                    <li><a href="mailto:bozhaoli@usc.edu" class="wow fadeInUp" data-wow-delay=".5s"><i
+                    class="fa fa-envelope"></i></a></li>
+                </ul>
+                <p class="heart">
+                    Made with <span class="fa fa-heart fa-2x animated pulse"></span> in California
+                </p>
+                <p class="copyright">
+                    © 2016 Bozhao(Joshua) Li and Kyle Lee
+                </p>
+            </div>
+        </div>
+        <!-- .row -->
+    </div>
+    <!-- .container -->
+</footer>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/dropdown.js"></script>
+	<script src="js/modal.js"></script>
+	<script src="js/main.js"></script>
+<script src="assets/js/jquery.easypiechart.js"></script>
+<script src="assets/js/waypoints.min.js"></script>
+<script src="assets/js/jquery.cbpQTRotator.js"></script>
+<script src="assets/js/custom.js"></script>
+
+	<!-- //-end- concat_js -->
+
+
+	
 
 </body>
+</html>
