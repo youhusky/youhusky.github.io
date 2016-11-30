@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />  
+    <title>Sankey Javascript Demo: Spread effort 2050 Pathway</title>
+    <script src="../ext/raphael.js" type="text/javascript"></script>
+    <script src="../ext/jquery.js" type="text/javascript"></script>
+    <script src="../js/sankey.js" type="text/javascript"></script>    
+				<link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <style>
+    #Sankey{
+    font-size: 20px
+  }
+  </style>
+
+  <body>
+    <script type='text/javascript'>
+      $(document).ready(function() {
+        var sankey = new Sankey();
+      
+        sankey.stack(0,["Petroleum","Natural Gas","Coal","Renewable energy","Nuclear electric power"]);
+        sankey.stack(1,["Transportation","Industrial","Residential and commercial","Electric power"]);
+      
+        sankey.setData([
+          ["Petroleum",35.4*0.72,"Transportation"],
+          ["Petroleum",35.4*0.23,"Industrial"],
+          ["Petroleum",35.4*0.04,"Residential and commercial"],
+          ["Petroleum",35.4*0.01,"Electric power"],
+         ["Natural Gas",28.3*0.03,"Transportation"],
+          ["Natural Gas",28.3*0.33,"Industrial"],
+          ["Natural Gas",28.3*0.28,"Residential and commercial"],
+          ["Natural Gas",28.3*0.35,"Electric power"],
+          ["Coal",15.7*0.09,"Industrial"],
+          ["Coal",35.4*0.01,"Residential and commercial"],
+          ["Coal",15.7*0.91,"Electric power"],
+          ["Renewable energy","Nuclear electric power",9.7*0.14,"Transportation"],
+          ["Renewable energy","Nuclear electric power",9.7*0.24,"Industrial"],
+          ["Renewable energy","Nuclear electric power",9.7*0.09,"Residential and commercial"],
+          ["Renewable energy","Nuclear electric power",9.7*0.53,"Electric power"],
+          ["Nuclear electric power",8.3,"Electric power"],
+          ]);
+        sankey.setColors({
+        "Petroleum":"#C7E7E6", 
+        "Natural Gas":"pink", 
+        "Coal":"#0000FF", 
+        "Renewable energy":"#0080FF", 
+        "Nuclear electric power":"#FF6FCF",
+        "Transportation":"#yellow", 
+        "Industrial":"#purple", 
+        "Residential and commercial":"red", 
+        "Electric power":"#30FF00" 
+        })
+        sankey.draw();
+    });
+      
+    </script>
+    <h1 style='width:1000px; text-align: center; margin-bottom: 0'>U.S. primary energy consumption by source and sector, 2015</h1>
+    <div style='width:1000px; text-align: center; margin-top: 0'>Total = 97.7 quadrillion British thermal units (Btu)</div>
+    <div id='sankey' style="width:1000px;height:1000px">
+      &nbsp;
+    </div>
+  </body>
+</html>

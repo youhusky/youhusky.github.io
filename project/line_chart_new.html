@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 
-<head>
 <meta charset="utf-8">
+  <meta name="description" content="BlackTie Free Bootstrap Theme">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel=stylesheet href="css/main.css">
+    <script src="js/vendor/modernizr.js"></script>
+
+    <script src="js/vendor/respond.min.js"></script>
 <title>Motor Data</title>
 <style>
 
-body {
+#line_chart_new {
   font: 10px sans-serif;
 }
 
@@ -52,7 +58,7 @@ body {
   fill: #000000;
 }
 
-.tooltip {
+.tooltips {
   font-weight: normal;
 }
 
@@ -61,12 +67,171 @@ body {
   shape-rendering: crispEdges;
 }
 
+
+.cd-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+.cd-header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media only screen and (min-width: 768px) {
+  .cd-header {
+    height: 70px;
+    background-color: #FCFAFB;
+  }
+}
+
+.cd-main-nav {
+  float: right;
+  margin-right: 5%;
+  width: 44px;
+  height: 100%;
+  background-size: 44px 44px;
+  cursor: pointer;
+}
+.cd-main-nav ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.cd-main-nav ul.is-visible {
+  -webkit-transform: translateY(50px);
+  -moz-transform: translateY(50px);
+  -ms-transform: translateY(50px);
+  -o-transform: translateY(50px);
+  transform: translateY(50px);
+}
+.cd-main-nav a {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 5%;
+  background: #2f292a;
+  border-top: 1px solid #453c3d;
+  color: #8e7d7f;
+}
+@media only screen and (min-width: 768px) {
+  .cd-main-nav {
+    width: auto;
+    height: auto;
+    background: none;
+    cursor: auto;
+  }
+  .cd-main-nav ul {
+    position: static;
+    width: auto;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    line-height: 70px;
+  }
+  .cd-main-nav ul.is-visible {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  .cd-main-nav li {
+    display: inline-block;
+    margin-left: 1em;
+    font-family:  Helvetica;
+  }
+  .cd-main-nav a {
+    display: inline-block;
+    height: auto;
+    line-height: normal;
+    background: transparent;
+    padding: .6em 1em;
+    border-top: none;
+    color: #3d3536;
+    text-transform: uppercase;
+    font-family:  Helvetica;
+    font-weight: normal;
+    font-size: 16px;
+    font-size: 0.875rem;
+  }
+  .cd-main-nav a:hover {
+    color: #5288DB;
+  }
+  
+  .no-touch .cd-main-nav a:hover {
+    color: #99a478;
+  }
+  .overview {
+  background-image: url("gas1.jpg");
+  }
+}
 </style>
+<head>
+  <link href="src/dragit.css" rel="stylesheet"/>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="src/dragit.js"></script>
+  <script src="uStates.js"></script>
 </head>
 <body>
-<h1>Prime Supplier Sales Volumes of Motor Gasoline </h1>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
 
-<script src="http://d3js.org/d3.v3.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/dropdown.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/main.js"></script>
+<div class="header">
+  <div class="container rel text-left">
+        <nav class=nav>
+      <ul>
+  <li><a href="index.html">Home</a></li>
+        <li><a href="gas.html">Gasoline Sales</a></li>
+        <li class="active"><a href="line_chart_new.html">Motor GAS SALES </a></li>
+                <li><a href="naturalgas.html">Natural Gas Consumption</a></li>
+        <li><a href="Renewable.html">Renewable Energy</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<main class="main">
+  <!-- overview divistion -->
+  <div class="overview"><center>
+    <h2 style="font-family: Century Gothic, Helvetica;color:black;font-size:32px;font-weight: lighter;"> <br>Overview for Total Gasoline All Sales
+    <p style="font-size:20px;opacity:0.7;margin-top: 20px;margin-bottom: 20px;margin-left: 350px;margin-right: 350px;font-family: sans-serif; font-size: 16px;font-weight:normal;">U.S. oil production has transformed fundamentally in the past decade. After two decades of
+steady decline, domestic crude oil production grew by nearly 75 percent between 2008 and 2014,
+and each month since October 2013 production has exceeded net imports, which hadn’t
+happened since the mid‐1990s. While developmentsin oil production have been widely reported
+and appreciated, far less attention has been paid to the remarkable and surprising decline in U.S.
+petroleum consumption relative to both recent levels and past projections. This report identifies
+the mechanisms behind the surprising decline. Quantifying the underlying causes improves
+understanding of why the consumption path has changed, and how it might evolve in the future.</p><br>
+    </h2>
+    </center>
+  </div>
+  <hr>
+
+ <h2 style="font-family: Century Gothic, Arial;font-size:32px;font-weight: lighter;color:black;"><center>Prime Supplier Sales Volumes of Motor Gasoline </center></h2>
+<div id="line_chart_new"></div>
+<hr>
+  <p><center>data</center></p>
 <script>
 
 var margin = {top: 20, right: 400, bottom: 110, left: 50},
@@ -113,7 +278,7 @@ var line = d3.svg.line()
 
 var maxY; // Defined later to update yAxis
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#line_chart_new").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom) //height + margin.top + margin.bottom
   .append("g")
@@ -223,7 +388,7 @@ d3.csv("motordata.csv", function(error, data) {
       .attr("x", -10)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Issues Rating");
+      .text("Thousand Gallon Per Day");
 
   var issue = svg.selectAll(".issue")
       .data(categories) // Select nested data and append to new svg group elements
@@ -334,7 +499,7 @@ d3.csv("motordata.csv", function(error, data) {
       .attr("class", "focus"); 
 
   focus.append("text") // http://stackoverflow.com/questions/22064083/d3-js-multi-series-chart-with-y-value-tracking
-        .attr("class", "tooltip")
+        .attr("class", "tooltips")
         .attr("x", width + 30) // position tooltips  
         .attr("y", function (d, i) { return (legendSpace)+i*(legendSpace); }); // (return (11.25/2 =) 5.625) + i * (5.625) // position tooltips       
 
@@ -424,4 +589,6 @@ d3.csv("motordata.csv", function(error, data) {
   }
 
 </script>
+<iframe src="table.html" width=1200 height="600" align="middle"></iframe>
+
 </html>

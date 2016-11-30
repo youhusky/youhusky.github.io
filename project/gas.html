@@ -10,7 +10,7 @@
 <style>
 	.state{
 		fill: none;
-		stroke: #a9a9a9;
+		stroke: white;
 		stroke-width: 1;
 	}
 	.state:hover{
@@ -185,8 +185,9 @@
 	<div class="container rel text-left">
 				<nav class=nav>
 			<ul>
-	<li><a href="index.html">Homepage</a></li>
-				<li><a href="gas.html">Gasoline Sales</a></li>
+	<li><a href="index.html">Home</a></li>
+				<li class="active"><a href="gas.html">Gasoline Sales</a></li>
+				<li><a href="line_chart_new.html">Motor GAS SALES </a></li>
                 <li><a href="naturalgas.html">Natural Gas Consumption</a></li>
 				<li><a href="Renewable.html">Renewable Energy</a></li>
 				<li><a href="about.html">About Us</a></li>
@@ -198,7 +199,7 @@
 <main class="main">
 	<!-- overview divistion -->
 	<div class="overview"><center>
-		<h2 style="font-family: Century Gothic, Helvetica;color:black;font-size:32px;font-weight: lighter;margin-top:50px"> <br>Overview for Total Gasoline All Sales
+		<h2 style="font-family: Century Gothic, Helvetica;color:black;font-size:32px;font-weight: lighter;"> <br>Overview for Total Gasoline All Sales
 		<p style="font-size:20px;opacity:0.7;margin-top: 20px;margin-bottom: 20px;margin-left: 350px;margin-right: 350px;font-family: sans-serif; font-size: 16px;font-weight:normal;">U.S. oil production has transformed fundamentally in the past decade. After two decades of
 steady decline, domestic crude oil production grew by nearly 75 percent between 2008 and 2014,
 and each month since October 2013 production has exceeded net imports, which hadn’t
@@ -272,13 +273,13 @@ understanding of why the consumption path has changed, and how it might evolve i
 
 <!-- map section -->
 	<div id="map">
-		<h2 style="font-family: Century Gothic, Arial;font-size:32px;font-weight: lighter"><center>Natural Gas Consumption by End Use</center></h2>
+		<h2 style="font-family: Century Gothic, Arial;font-size:32px;font-weight: lighter;color:black;"><center>Natural Gas Consumption by End Use</center></h2>
 		<div id="tooltip"></div><!-- div to hold tooltip. -->
 		<svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
 	</div>
 	<hr>
 
-	<p><center>data</center></p>
+
 
 </main>
 <script src="uStates.js"></script> <!-- creates uStates. -->
@@ -297,7 +298,9 @@ var dataset;
 
 	var year = 1983;
 
+
 	d3.csv("total_gasoline.csv",function(data){
+		datatable = data;
 		console.log(data);
 		console.log(year);
 		console.log(data.length);
@@ -351,6 +354,29 @@ var dataset;
         /* draw states on id #statesvg */ 
         uStates.draw("#statesvg", sampleData, tooltipHtml);
         
+
+  // // add data table
+		// // making a table
+		// var columns = ["year","HI","AK","FL","SC","GA","AL","NC","TN","RI","CT","MA","ME","NH","VT","NY","NJ","PA","DE","MD","WV","KY","OH","MI","WY","MT","ID","WA","DC","TX","CA","AZ","NV","UT","CO","NM","OR","ND","SD","NE","IA","MS","IN","IL","MN","WI","MO","AR","OK","KS","LS","VA"];
+		// var table = d3.select("body").append("table");
+		// thead = table.append("thead");
+		// tbody = table.append("tbody");
+
+		// // header
+		// thead.append("tr").selectAll("th").data(columns).enter().append("th").text(function(column){return column;});
+
+		// // make rows
+		// console.log("fds",datatable);
+		// var tr = tbody.selectAll("tr").data(datatable).enter().append("tr");
+
+		// tr.append('td').html(function(a) { return a.year; });
+		// tr.append('td').html(function(a) { return a['HI']; });
+		// tr.append('td').html(function(a) { return a['AK']; });
+		// tr.append('td').html(function(a) { return a['FL']; });
+		// tr.append('td').html(function(a) { return a['SC']; });
+		// tr.append('td').html(function(a) { return a['GA']; });
+		// tr.append('td').html(function(a) { return a['AL']; });
+
       });
 
   
@@ -362,6 +388,8 @@ var dataset;
   */
   d3.select(self.frameElement).style("height", "600px"); 
   
-</script>
 
+
+
+</script>
 </body>
