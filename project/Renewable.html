@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+
+  <meta charset="utf-8"/>
+  <title>dragit example with a scatterplot</title>
+<style>
+
+#viz {
+  font: 10px sans-serif;
+}
+#slider{
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+.state{
+  fill: none;
+  stroke: #a9a9a9;
+  stroke-width: 1;
+}
+.state:hover{
+  fill-opacity:0.5;
+}
+#tooltip {   
+  position: absolute;           
+  text-align: center;
+  padding: 20px;             
+  margin: 10px;
+  font: 12px sans-serif;        
+  background: lightsteelblue;   
+  border: 1px;      
+  border-radius: 2px;           
+  pointer-events: none;         
+}
+#tooltip h4{
+  margin:0;
+  font-size:14px;
+}
+#tooltip{
+  background:rgba(0,0,0,0.9);
+  border:1px solid grey;
+  border-radius:5px;
+  font-size:12px;
+  width:auto;
+  padding:4px;
+  color:white;
+  opacity:0;
+}
+#tooltip table{
+  table-layout:fixed;
+}
+#tooltip tr td{
+  padding:0;
+  margin:0;
+}
+#tooltip tr td:nth-child(1){
+  width:50px;
+}
+#tooltip tr td:nth-child(2){
+  text-align:center;
+}
+
+.cd-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+.cd-header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media only screen and (min-width: 768px) {
+  .cd-header {
+    height: 70px;
+    background-color: #FCFAFB;
+  }
+}
+
+.cd-main-nav {
+  float: right;
+  margin-right: 5%;
+  width: 44px;
+  height: 100%;
+  background-size: 44px 44px;
+  cursor: pointer;
+}
+.cd-main-nav ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.cd-main-nav ul.is-visible {
+  -webkit-transform: translateY(50px);
+  -moz-transform: translateY(50px);
+  -ms-transform: translateY(50px);
+  -o-transform: translateY(50px);
+  transform: translateY(50px);
+}
+.cd-main-nav a {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 5%;
+  background: #2f292a;
+  border-top: 1px solid #453c3d;
+  color: #8e7d7f;
+}
+@media only screen and (min-width: 768px) {
+  .cd-main-nav {
+    width: auto;
+    height: auto;
+    background: none;
+    cursor: auto;
+  }
+  .cd-main-nav ul {
+    position: static;
+    width: auto;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    line-height: 70px;
+  }
+  .cd-main-nav ul.is-visible {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  .cd-main-nav li {
+    display: inline-block;
+    margin-left: 1em;
+    font-family:  Helvetica;
+  }
+  .cd-main-nav a {
+    display: inline-block;
+    height: auto;
+    line-height: normal;
+    background: transparent;
+    padding: .6em 1em;
+    border-top: none;
+    color: #3d3536;
+    text-transform: uppercase;
+    font-family:  Helvetica;
+    font-weight: normal;
+    font-size: 16px;
+    font-size: 0.875rem;
+  }
+  .cd-main-nav a:hover {
+    color: #5288DB;
+  }
+  
+  .no-touch .cd-main-nav a:hover {
+    color: #99a478;
+  }
+  .overview {
+  background-image: url("gas1.jpg");
+  }
+}
+</style>
+<head>
+  <link href="src/dragit.css" rel="stylesheet"/>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="src/dragit.js"></script>
+  <script src="uStates.js"></script>
+</head>
+<body>
+
+<header class="cd-header">
+    <nav class="cd-main-nav">
+      <ul>
+        <!-- inser more links here -->
+        <li><a href="index.html">Homepage</a></li>
+        <li><a href="gas.html">Gasoline Sales</a></li>
+        <li><a href="naturalgas.html">Natural Gas Consumption</a></li>
+        <li><a href="Renewable.html">Renewable Energy</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </nav> <!-- cd-main-nav -->
+</header>
+
+<main class="main">
+  <!-- overview divistion -->
+  <div class="overview"><center>
+    <h2 style="font-family: Century Gothic, Helvetica;color:black;font-size:32px;font-weight: lighter;margin-top:50px"> <br>Overview for Total Gasoline All Sales
+    <p style="font-size:20px;opacity:0.7;margin-top: 20px;margin-bottom: 20px;margin-left: 350px;margin-right: 350px;font-family: sans-serif; font-size: 16px;font-weight:normal;">U.S. oil production has transformed fundamentally in the past decade. After two decades of
+steady decline, domestic crude oil production grew by nearly 75 percent between 2008 and 2014,
+and each month since October 2013 production has exceeded net imports, which hadn’t
+happened since the mid‐1990s. While developmentsin oil production have been widely reported
+and appreciated, far less attention has been paid to the remarkable and surprising decline in U.S.
+petroleum consumption relative to both recent levels and past projections. This report identifies
+the mechanisms behind the surprising decline. Quantifying the underlying causes improves
+understanding of why the consumption path has changed, and how it might evolve in the future.</p><br>
+    </h2>
+    </center>
+  </div>
+  <hr>
+
+    <h2 style="font-family: Century Gothic, Arial;font-size:32px;font-weight: lighter"><center>Total Renewable/Primary Energy Consumption Comparison</center></h2>
+<div id="viz"></div>
+<p style="clear:both"></p>
+<div id="slider"></div>
+<label style="font-size: 10px;font-family:sans-serif;"><input type="checkbox" name="mode" value="trajectory" onclick="dragit.trajectory.toggleAll('selected');" checked> Show complete trajectory</label>
+
+  <hr>
+
+  <p><center>data</center></p>
+</main>
+<script>
+
+// Original scatterplot from http://bl.ocks.org/mbostock/3887118
+// Data source http://econ.worldbank.org/WBSITE/EXTERNAL/EXTDEC/EXTRESEARCH/0,,contentMDK:20699068~pagePK:64214825~piPK:64214943~theSitePK:469382,00.html
+// Data source http://catalog.ihsn.org/index.php/catalog/1056/data_dictionary
+var margin = {top: 20, right: 50, bottom: 30, left: 80},
+    width = 960 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+var x = d3.scale.linear()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var color = d3.scale.category10();
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var svg = d3.select("#viz").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+dragit.time = {min: 0, max: 19, step: 1, current: 0, offset: 1997};
+dragit.object.offsetX = margin.left;
+
+data = [
+  {"name": "Total Renewable Energy Consumption",
+  "years": [
+    {"year": 1997, "value": 7.014094},
+    {"year": 1998, "value": 6.491263},
+    {"year": 1999, "value": 6.513709},
+    {"year": 2000, "value": 6.104191},
+    {"year": 2001, "value": 5.159914},
+    {"year": 2002, "value": 5.726055},
+    {"year": 2003, "value": 5.944089},
+    {"year": 2004, "value": 6.07464},
+    {"year": 2005, "value": 6.233426},
+    {"year": 2006, "value": 6.636681},
+    {"year": 2007, "value": 6.522846},
+    {"year": 2008, "value": 7.174265},
+    {"year": 2009, "value": 7.603782},
+    {"year": 2010, "value": 8.030007},
+    {"year": 2011, "value": 8.998931},
+    {"year": 2012, "value": 8.706167},
+    {"year": 2013, "value": 9.271152},
+    {"year": 2014, "value": 9.558241},
+    {"year": 2015, "value": 9.577439}
+  ]},
+  {"name": "Total Primary Energy Consumption",
+  "years": [
+    {"year": 1997, "value": 94.600335},
+    {"year": 1998, "value": 95.017733},
+    {"year": 1999, "value": 96.648388},
+    {"year": 2000, "value": 98.816542},
+    {"year": 2001, "value": 96.169665},
+    {"year": 2002, "value": 97.643473},
+    {"year": 2003, "value": 97.917499},
+    {"year": 2004, "value": 100.089696},
+    {"year": 2005, "value": 100.187712},
+    {"year": 2006, "value": 99.484477},
+    {"year": 2007, "value": 101.014734},
+    {"year": 2008, "value": 98.890725},
+    {"year": 2009, "value": 94.117574},
+    {"year": 2010, "value": 97.44439},
+    {"year": 2011, "value": 96.841665},
+    {"year": 2012, "value": 94.415976},
+    {"year": 2013, "value": 97.148007},
+    {"year": 2014, "value": 98.317365},
+    {"year": 2015, "value": 97.553287}
+    ]
+  }]  
+/*
+    var dataset;
+    d3.csv("Energy_Consumption.csv", function(data){
+      dataset = data;
+      data.forEach(function(d){
+        d.year = +d.year;
+        d.Renewable = +d["Total_Renewable_Energy_Consumption"];
+        d.Primary= +d["Total_Primary_Energy_Consumption"];
+      });
+    console.log(dataset);
+*/
+x.domain(d3.extent(data[1].years, function(d) { return d.year; })).nice();
+y.domain([0, d3.max(data, function(d) { return d3.max(d.years, function(e) { return e.value; }) })+20]).nice();
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis)
+  .append("text")
+    .attr("class", "label")
+    .attr("x", width)
+    .attr("y", -6)
+    .style("text-anchor", "end")
+    .text("Time");
+
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis)
+  .append("text")
+    .attr("class", "label")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("Quadrillion Btu")
+
+var gPoints = svg.selectAll(".points")
+                .data(data)
+              .enter()
+                .append("g")
+                .attr("class", "points")
+                .attr("transform", function(d) {
+                  return "translate("+x(d.years[dragit.time.current].year)+", "+y(d.years[dragit.time.current].value)+")";
+                })
+                .on("mouseenter", dragit.trajectory.display)
+                .on("mouseleave", dragit.trajectory.remove)
+                .call(dragit.object.activate)
+
+gPoints.append("circle")
+  .attr("r", 10)
+  .attr("cx", 0)
+  .attr("cy", 0)
+  .style("fill", function(d) { return color(d.name); })
+
+
+gPoints.append("text")
+    .attr("x", 50)
+    .attr("y", 0)
+    .attr("dy", ".35em")
+    .style("text-anchor", "end")
+    .text(function(d) { return d.name; });
+
+
+var legend = svg.selectAll(".legend")
+    .data(color.domain())
+  .enter().append("g")
+    .attr("class", "legend")
+    .attr("transform", function(d, i) { return "translate(-200," + i * 20 + ")"; });
+
+legend.append("rect")
+    .attr("x", width - 18)
+    .attr("width", 18)
+    .attr("height", 18)
+    .style("fill", color);
+
+legend.append("text")
+    .attr("x", width - 24)
+    .attr("y", 9)
+    .attr("dy", ".35em")
+    .style("text-anchor", "end")
+    .text(function(d) { return d; });
+
+function update(v, t) {
+
+  dragit.time.current = v || dragit.time.current;
+  
+  gPoints.transition().duration(100)
+                .attr("transform", function(d) {
+                  return "translate("+x(d.years[dragit.time.current].year)+", "+y(d.years[dragit.time.current].value)+")";
+                })
+}
+
+function init() {
+
+  dragit.init("svg");
+
+  dragit.data = data.map(function(d, i) { 
+    console.log(d);
+    return d.years.map(function(e, i) { 
+      return [x(e.year)+margin.left, y(e.value)+margin.top]; 
+    }) 
+  });
+  
+  dragit.evt.register("update", update);
+  dragit.utils.slider("#slider", false)
+
+  dragit.trajectory.toggleAll('selected');
+}
+
+init();
+
+
+</script>
