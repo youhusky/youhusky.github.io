@@ -10,7 +10,7 @@ var margin = {
         bottom: 40,
         left: 40
     },
-    width = 1260 - margin.left - margin.right,
+    width = 1360 - margin.left - margin.right,
     height = 540 - margin.top - margin.bottom,
     height2 = 540 - margin2.top - margin2.bottom;
 
@@ -278,13 +278,13 @@ d3.csv("src/motordata.csv", function(error, data) {
         .attr("x1", 10).attr("x2", 10)
         .attr("y1", 0).attr("y2", height + 10)
         .style("pointer-events", "none") // Stop line interferring with cursor
-        .style("opacity", 1e-6); // Set opacity to zero 
+        .style("opacity",1); // Set opacity to zero 
 
     var hoverDate = hoverLineGroup
         .append('text')
         .attr("class", "hover-text")
         .attr("y", height - (height - 40)) // hover date text position
-        .attr("x", width - 10) // hover date text position
+        .attr("x", width - 60) // hover date text position
         .style("fill", "#E6E7E8");
 
     var columnNames = d3.keys(data[0]) //grab the key values from your first data row
@@ -298,7 +298,7 @@ d3.csv("src/motordata.csv", function(error, data) {
 
     focus.append("text") // http://stackoverflow.com/questions/22064083/d3-js-multi-series-chart-with-y-value-tracking
         .attr("class", "tooltips")
-        .attr("x", width + 30) // position tooltips  
+        .attr("x", width + 60) // position tooltips  
         .attr("y", function(d, i) {
             return (legendSpace) + i * (legendSpace);
         }); // (return (11.25/2 =) 5.625) + i * (5.625) // position tooltips       
@@ -311,7 +311,7 @@ d3.csv("src/motordata.csv", function(error, data) {
                 .text(null) // on mouseout remove text for hover date
 
             d3.select("#hover-line")
-                .style("opacity", 1e-6); // On mouse out making line invisible
+                .style("opacity", 2); // On mouse out making line invisible
         });
 
     function mousemove() {
@@ -329,7 +329,7 @@ d3.csv("src/motordata.csv", function(error, data) {
         d3.select("#hover-line") // select hover-line and changing attributes to mouse position
             .attr("x1", mouse_x)
             .attr("x2", mouse_x)
-            .style("opacity", 1); // Making line visible
+            .style("opacity", 2); // Making line visible
 
         // Legend tooltips // http://www.d3noob.org/2014/07/my-favourite-tooltip-method-for-line.html
 
