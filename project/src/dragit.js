@@ -487,6 +487,7 @@ dragit.object.activate = function(d, i) {
     d3.select(el).append("input")
                   .attr("type", "range")
                   .attr("class", "slider-time")
+                  
                   .property("min", dragit.time.min)
                   .property("max", dragit.time.max)
                 //  .attr("step", 1)
