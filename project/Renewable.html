@@ -3,7 +3,7 @@
 <meta name="description" content="BlackTie Free Bootstrap Theme">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>dragit example with a scatterplot</title>
+<title>Renewable Energy</title>
 
 <head>
     <link href="src/dragit.css" rel="stylesheet" />
@@ -11,6 +11,10 @@
     <link rel=stylesheet href="css/renewable.css">
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="src/dragit.js"></script>
+    <style>
+    #vizsvg, #slider, #primaryconsumptiongraph
+    {margin-left:auto; margin-right:auto; display:block;}
+    </style>
 </head>
 
 <body>
@@ -20,7 +24,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="gas.html">Gasoline Sales</a></li>
-                    <li><a href="line_chart_new.html">Motor GAS SALES </a></li>
+                    <li><a href="motorgas.html">Motor GAS SALES </a></li>
                     <li><a href="naturalgas.html">Natural Gas Consumption</a></li>
                     <li class="active"><a href="Renewable.html">Renewable Energy</a></li>
                     <li><a href="about.html">About Us</a></li>
@@ -29,19 +33,22 @@
         </div>
     </div>
     <main class="main">
-        <!-- overview divistion -->
+        <!-- overview division -->
         <div class="overview">
             <center>
-                <h2 style="font-family: Century Gothic, Helvetica;color:black;font-size:32px;font-weight: lighter;"> <br>Overview for Total Gasoline All Sales
-    <p style="font-size:20px;opacity:0.7;margin-top: 20px;margin-bottom: 20px;margin-left: 350px;margin-right: 350px;font-family: sans-serif; font-size: 16px;font-weight:normal;">U.S. oil production has transformed fundamentally in the past decade. After two decades of
-steady decline, domestic crude oil production grew by nearly 75 percent between 2008 and 2014,
-and each month since October 2013 production has exceeded net imports, which hadn’t
-happened since the mid‐1990s. While developmentsin oil production have been widely reported
-and appreciated, far less attention has been paid to the remarkable and surprising decline in U.S.
-petroleum consumption relative to both recent levels and past projections. This report identifies
-the mechanisms behind the surprising decline. Quantifying the underlying causes improves
-understanding of why the consumption path has changed, and how it might evolve in the future.</p><br>
-    </h2>
+                <h2 style="font-family: Century Gothic, Helvetica;color:black;font-weight: lighter;border-radius: 1px;padding: 50px;font-size:16px;color:black;background-color:white;opacity:0.6;margin-top:0px;margin-left:0px;margin-right:0px;line-height:30px"> <p style="font-size:42px;font-weight:bold;">Overview for Renewable Energy</p>
+                    <p style="margin-top: 20px;margin-bottom: 20px;margin-left: 300px;margin-right: 300px;font-family: sans-serif; font-size: 16px;font-weight:normal;text-align:center;">For our world's supply of fossil fuels — oil, coal and natural gas and how it is being depleted slowly because of constant use. Fossil fuels are not renewable, they can't be made again. Once they are gone, they're gone.
+
+                    We have learned that there's no shortage of renewable energy from the sun, wind and water and even stuff usually thought of as garbage — dead trees, tree branches, yard clippings, left-over crops, sawdust, even livestock manure, can produce electricity and fuels — resources collectively called "biomass."
+
+                    The sunlight falling on the United States in one day contains more than twice the energy we consume in an entire year. California has enough wind gusts to produce 11 percent of the world's wind electricity. Clean energy sources can be harnessed to produce electricity, process heat, fuel and valuable chemicals with less impact on the environment.
+
+                    In contrast, emissions from cars fueled by gasoline and factories and other facilities that burn oil affect the atmosphere. Foul air results in so-called greenhouse gases. About -81% of all U.S. greenhouse gases are carbon dioxide emissions from energy-related sources.
+
+                    Renewable energy resource development will result in new jobs for people and less oil we have to buy from foreign countries. According to the federal government, America spent $109 billion to import oil in 2000. If we fully develop self-renewing resources, we will keep the money at home to help the economy.
+                    </p>
+                    
+                </h2>
             </center>
         </div>
         <hr>
@@ -55,7 +62,6 @@ understanding of why the consumption path has changed, and how it might evolve i
         <hr>
     </main>
     <script>
-    // Original scatterplot from http://bl.ocks.org/mbostock/3887118
     // Data source http://econ.worldbank.org/WBSITE/EXTERNAL/EXTDEC/EXTRESEARCH/0,,contentMDK:20699068~pagePK:64214825~piPK:64214943~theSitePK:469382,00.html
     // Data source http://catalog.ihsn.org/index.php/catalog/1056/data_dictionary
     var margin = {
@@ -86,6 +92,7 @@ understanding of why the consumption path has changed, and how it might evolve i
     var svg = d3.select("#viz").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
+        .attr("id","vizsvg")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -336,5 +343,4 @@ understanding of why the consumption path has changed, and how it might evolve i
     init();
     </script>
     <!-- <iframe src="untitled.html" width="1300" height="600"></iframe> -->
-    <iframe src="test/examples/simple.html" width="1100" height="650">
-    </iframe>
+    <iframe src="test/examples/simple.html" width="1100" height="650" id="primaryconsumptiongraph"></iframe>

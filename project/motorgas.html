@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="description" content="BlackTie Free Bootstrap Theme">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible">
+<title>Motor Gas Sales</title>
+
+<head>
+    <link rel=stylesheet href="css/main.css">
+    <link rel=stylesheet href="css/motorgas.css">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/dropdown.js"></script>
+    <script src="lib/d3.v3.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container rel text-left">
+            <nav class=nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="gas.html">Gasoline Sales</a></li>
+                    <li class="active"><a href="motorgas.html">Motor GAS SALES </a></li>
+                    <li><a href="naturalgas.html">Natural Gas Consumption</a></li>
+                    <li><a href="Renewable.html">Renewable Energy</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <main class="main">
+        <!-- overview divistion -->
+        <div class="overview">
+            <center>
+                <h2 style="font-family: Century Gothic, Helvetica;color:black;font-weight: lighter;border-radius: 1px;padding: 50px;font-size:16px;color:black;background-color:white;opacity:0.6;margin-top:0px;margin-left:0px;margin-right:0px;line-height:30px"> <p style="font-size:42px;font-weight:bold;">Overview for Motor Gasoline Sales</p>
+                    <p style="margin-top: 20px;margin-bottom: 20px;margin-left: 300px;margin-right: 300px;font-family: sans-serif; font-size: 16px;font-weight:normal;text-align:center;">U.S. oil production has transformed fundamentally in the past decade. After two decades of
+                            steady decline, domestic crude oil production grew by nearly 75 percent between 2008 and 2014,
+                            and each month since October 2013 production has exceeded net imports, which hadn’t
+                            happened since the mid‐1990s. While developmentsin oil production have been widely reported
+                            and appreciated, far less attention has been paid to the remarkable and surprising decline in U.S.
+                            petroleum consumption relative to both recent levels and past projections. This report identifies
+                            the mechanisms behind the surprising decline. Quantifying the underlying causes improves
+                            understanding of why the consumption path has changed, and how it might evolve in the future.
+                    </p>
+                </h2>
+            </center>
+        </div>
+        <hr>
+        <h2 style="font-family: Century Gothic, Arial;font-size:32px;font-weight: lighter;color:black;"><center>Prime Supplier Sales Volumes of Motor Gasoline </center></h2>
+        <div id="line_chart_new"></div>
+        <script src="src/line_chart.js"></script>
+        <hr>
+        <p>
+            <center>data</center>
+        </p>
+        <iframe src="src/table.html" width=1200 height="600" align="middle"></iframe>
+
+        </html>
