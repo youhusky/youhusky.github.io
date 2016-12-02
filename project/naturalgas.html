@@ -39,106 +39,25 @@
         <div class="overview">
             <center>
                 <h2 style="font-family: Century Gothic, Helvetica;color:black;font-weight: lighter;border-radius: 1px;padding: 50px;font-size:16px;color:black;background-color:white;opacity:0.6;margin-top:0px;margin-left:0px;margin-right:0px;line-height:30px"> <p style="font-size:42px;font-weight:bold;">Overview for Natural Gasoline Sales</p>
-            		<p style="margin-top: 20px;margin-bottom: 20px;margin-left: 300px;margin-right: 300px;font-family: sans-serif; font-size: 16px;font-weight:normal;text-align:center;">Natural gas marketed production is forecast to average 77.3 billion cubic feet per day (Bcf/d) in 2016, a 1.4 Bcf/d decline from the 2015 level, which would be the first annual decline since 2005. EIA expects production to start rising in November as a result of increases in drilling activity and infrastructure build-out that connects natural gas production to demand centers. In 2017, forecast natural gas production increases by an average of 2.9 Bcf/d from the 2016 level.
-                    Growing domestic natural gas consumption, along with higher pipeline exports to Mexico and liquefied natural gas exports, contribute to the Henry Hub natural gas spot price rising from an average of $2.50/million British thermal units (MMBtu) in 2016 to $3.12/MMBtu in 2017.</p>
+            		<p style="margin-top: 20px;margin-bottom: 20px;margin-left: 290px;margin-right: 290px;font-family: sans-serif; font-size: 18px;font-weight:normal;text-align:center;">
+Natural gas utilities are innovative and reliable, providing customers with a variety of services, products and -- most important -- America's best energy value. Gas utilities serve more than 68 million residential customers and more than 5 million commercial enterprises.
+Your local gas utility has an investment in and a commitment to your community. Many gas utilities have been serving their customers for more than a century. </p>
         		</h2>
             </center>
         </div>
         <hr>
         <div id="map">
-            <h2 style="font-family: Century Gothic, Arial;font-size:32px;font-weight: lighter;color:black;"><center>Natural Gas Consumption by End Use</center></h2>
-            <div id="tooltip"></div>
+            <h2 style="font-family: Century Gothic, Arial;font-size:32px;font-weight: lighter;color:black;margin-top:40px;margin-bottom:40px;"><center>Natural Gas Consumption by End Use</center></h2>
+            
             <!-- div to hold tooltip. -->
-            <svg width="960" height="600" id="statesvg"></svg>
             <!-- svg to hold the map. -->
         </div>
+        <iframe src="src/map2.html" align="middle" width=1260 height=550 id="primaryconsumptiongraph"></iframe>
+              <p style="font-family: Century Gothic, Helvetica;font-weight: lighter;border-radius: 1px;padding: 20px;font-size:18px;color:black;background-color:white;opacity:0.6;margin-top:0px;margin-left:20px;margin-right:20px;line-height:30px" >
+        The choropleth map shows us the distribution of natural gas consumption distribution by US states from 1997 to 2012. From this map, we could see that California and Texas usually have the most gas consumption in the United States. Fewer consumption in the North west region.  <br><br>
+            Hover over the clock and choose the year you want to see will show you natural gas consumption distribution. Click on the "Streets" button will show streets layer for you. Default layer will be in grayscale. Click on the states will zoom in to see map clearer.</p>
         <hr>
     </main>
     <script src="uStates.js"></script>
     <!-- creates uStates. -->
-    
-    <script>
-    var dataset;
-
-    function tooltipHtml(n, d) { /* function to create html content string in tooltip div. */
-        //var type = d3.select("#map_title #title_cate").html();
-        //var year = d3.select("#map_title #title_year").html();
-        //console.log("type",type);
-        //console.log("year",year);
-        //var dvalue = (d.value/1000000).toFixed(2);
-        return "<h4>" + n + "</h4><h4>in " + year + "</h4></h4><h4>" + d.value + " Million Cubic Feet</h4>";
-
-    }
-
-    var year = 1997;
-
-    d3.csv("natural_gas_consumption.csv", function(data) {
-        console.log(data);
-        console.log(year);
-        console.log(data.length);
-        for (var i = 0; i < data.length; i++) {
-            if (data[i].year == year) dataset = data[i]
-        }
-
-        console.log(dataset);
-
-        var max_state = 0;
-        var min_state = Infinity;
-        var sampleData = {}; /* Sample random data. */
-        ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
-            "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
-            "MI", "WY", "MT", "ID", "WA", "DC", "TX", "CA", "AZ", "NV", "UT",
-            "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
-            "WI", "MO", "AR", "OK", "KS", "LS", "VA"
-        ]
-        .forEach(function(d, i) {
-            max_state = d3.max([max_state, +dataset[d]])
-            min_state = d3.min([min_state, +dataset[d]])
-        });
-
-        //console.log(min_state,max_state);
-        /*
-			// side range bar
-		  d3.select("#range_high")
-		  	.text(function(d) {
-				return max_state+" Million Cubic Feet";
-				});
-		  d3.select("#range_low")
-		  	.text(function(d) {
-				return min_state+" Million Cubic Feet";
-				});
-		  */
-        var Scale = d3.scale.linear()
-            .domain([min_state, max_state])
-            .range([0, 1]);
-        ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
-            "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
-            "MI", "WY", "MT", "ID", "WA", "DC", "TX", "CA", "AZ", "NV", "UT",
-            "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN",
-            "WI", "MO", "AR", "OK", "KS", "LS", "VA"
-        ]
-        .forEach(function(d, i) {
-            sampleData[d] = {
-                value: dataset[d],
-                color: d3.interpolate("#4571DA", "#9D2E2C")(Scale(dataset[d]))
-            };
-            //console.log(Scale(dataset[d]));
-        });
-        // console.log(min_state,max_state);
-        //console.log(sampleData);
-
-        /* draw states on id #statesvg */
-        uStates.draw("#statesvg", sampleData, tooltipHtml);
-
-    });
-
-
-    /*
-  d3.select("#details").classed("hidden",true);
-					d3.select("#charts").classed("hidden",true);
-					d3.select("#details_state_name").classed("hidden",true);
-					d3.select('.site-footer').classed("hidden",false);
-  */
-    d3.select(self.frameElement).style("height", "600px");
-    </script>
 </body>

@@ -30,8 +30,8 @@ info.onAdd = function(map) {
 };
 
 info.update = function(props) {
-    this._div.innerHTML = '<h4>US Gallons consumption Distribution</h4> <h4>Hover the clock to choose a year</h4>' + (props ?
-        '<b>' + props.name + '</b><br />' + props.density + ' Thousand gallons per day' : 'Hover over a state');
+    this._div.innerHTML = '<h4>Natural Gas Consumption state Distribution</h4> <h4>Hover the clock to choose a year</h4>' + (props ?
+        '<b>' + props.name + '</b><br />' + props.density + 'million cubic feet per year' : 'Hover over a state');
 };
 
 info.addTo(map);
@@ -39,13 +39,13 @@ info.addTo(map);
 
 // get color depending on population density value
 function getColor(d) {
-    return d > 30000 ? 'Purple' :
-        d > 10000 ? 'BlueViolet' :
-        d > 5000 ? 'MediumOrchid' :
-        d > 2000 ? 'Orchid' :
-        d > 1000 ? 'Plum' :
-        d > 500 ? 'Thistle' :
-        d > 100 ? 'Lavender' :
+    return d > 3000000 ? 'Purple' :
+        d > 1000000 ? 'BlueViolet' :
+        d > 500000 ? 'MediumOrchid' :
+        d > 200000 ? 'Orchid' :
+        d > 100000 ? 'Plum' :
+        d > 50000 ? 'Thistle' :
+        d > 5000 ? 'Lavender' :
         '#FFEDA0';
 }
 
@@ -75,28 +75,28 @@ function highlightFeature(e) {
     info.update(layer.feature.properties);
 }
 
-var geojson2013;
-var geojson2003;
-var geojson1993;
-var geojson1983;
+var geojson2012;
+var geojson2007;
+var geojson2002;
+var geojson1997;
 
 function resetHighlight(e) {
-    geojson2013.resetStyle(e.target);
+    geojson2012.resetStyle(e.target);
     info.update();
 }
 
 function resetHighlight(e) {
-    geojson2003.resetStyle(e.target);
+    geojson2007.resetStyle(e.target);
     info.update();
 }
 
 function resetHighlight(e) {
-    geojson1993.resetStyle(e.target);
+    geojson2002.resetStyle(e.target);
     info.update();
 }
 
 function resetHighlight(e) {
-    geojson1983.resetStyle(e.target);
+    geojson1997.resetStyle(e.target);
     info.update();
 }
 
@@ -113,22 +113,22 @@ function onEachFeature(feature, layer) {
 }
 
 
-var geojson2013 = L.geoJson(states2013, {
+var geojson2012 = L.geoJson(states2012, {
     style: style,
     onEachFeature: onEachFeature
 });
 
-var geojson2003 = L.geoJson(states2003, {
+var geojson2007 = L.geoJson(states2007, {
     style: style,
     onEachFeature: onEachFeature
 });
 
-var geojson1993 = L.geoJson(states1993, {
+var geojson2002 = L.geoJson(states2002, {
     style: style,
     onEachFeature: onEachFeature
 });
 
-var geojson1983 = L.geoJson(states1983, {
+var geojson1997 = L.geoJson(states1997, {
     style: style,
     onEachFeature: onEachFeature
 });
@@ -141,10 +141,10 @@ var overlays = {
 
 };
 var baseLayers = {
-    "2013": geojson2013,
-    "2003": geojson2003,
-    "1993": geojson1993,
-    "1983": geojson1983
+    "2012": geojson2012,
+    "2007": geojson2007,
+    "2002": geojson2002,
+    "1997": geojson1997
 };
 
 
@@ -157,7 +157,7 @@ var legend = L.control({
 legend.onAdd = function(map) {
 
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = [100, 500, 1000, 2000, 5000, 10000, 30000],
+        grades = [5000, 50000, 100000, 200000, 500000, 1000000, 3000000],
         labels = [],
         from, to;
 
