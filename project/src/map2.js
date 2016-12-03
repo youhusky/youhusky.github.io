@@ -30,7 +30,7 @@ info.onAdd = function(map) {
 };
 
 info.update = function(props) {
-    this._div.innerHTML = '<h4>Natural Gas Consumption state Distribution</h4> <h4>Hover the clock to choose a year</h4>' + (props ?
+    this._div.innerHTML = '<h4>Natural Gas Consumption state Distribution</h4> <h4 style="color:red;">Click the CLOCK to choose a year</h4>' + (props ?
         '<b>' + props.name + '</b><br />' + props.density + 'million cubic feet per year' : 'Hover over a state');
 };
 

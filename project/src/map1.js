@@ -30,7 +30,7 @@ info.onAdd = function(map) {
 };
 
 info.update = function(props) {
-    this._div.innerHTML = '<h4>US Gallons consumption Distribution</h4> <h4>Hover the clock to choose a year</h4>' + (props ?
+    this._div.innerHTML = '<h4>US Gallons consumption Distribution</h4> <h4 style="color:red;">Click the CLOCK to choose a year</h4>' + (props ?
         '<b>' + props.name + '</b><br />' + props.density + ' Thousand gallons per day' : 'Hover over a state');
 };
 
